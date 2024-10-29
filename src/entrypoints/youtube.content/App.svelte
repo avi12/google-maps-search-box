@@ -16,9 +16,7 @@
   Address: {addressManual}
 </p>
 <style>
-  :global {
-    p {
-      color: white !important;
-    }
+  p {
+    color: var(--yt-spec-text-primary);
   }
 </style>
