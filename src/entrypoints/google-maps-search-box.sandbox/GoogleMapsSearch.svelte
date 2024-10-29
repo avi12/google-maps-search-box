@@ -23,7 +23,7 @@
                        return;
                      }
 
-                     const address = (target.value.formattedAddress);
+                     const address = target.value.formattedAddress;
                      top?.postMessage(
                        {
                          payload: address
