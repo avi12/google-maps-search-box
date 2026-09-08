@@ -11,6 +11,12 @@ importers:
       '@googlemaps/extended-component-library':
         specifier: ^0.6.12
         version: 0.6.12(@types/react@18.3.12)
+      '@webext-core/messaging':
+        specifier: ^4.0.0
+        version: 4.0.0(@types/chrome@0.0.269)
+      zod:
+        specifier: ^4.5.4
+        version: 4.5.4
     devDependencies:
       '@tsconfig/svelte':
         specifier: ^5.0.4
@@ -45,6 +51,9 @@ packages:
     peerDependenciesMeta:
       rollup:
         optional: true
+
+  '@aklinker1/zero-serialize-error@1.0.2':
+    resolution: {integrity: sha512-hGVkgFqb8Zs80JJ7MOSCGQXH2SyWfwnJwOl8Qpp1lUdkp5T7GTf8QrAMib42Hnzx6HtnNYdmNaSSg4MQy+MDRQ==}
 
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -457,6 +466,14 @@ packages:
 
   '@webext-core/match-patterns@1.0.3':
     resolution: {integrity: sha512-NY39ACqCxdKBmHgw361M9pfJma8e4AZo20w9AY+5ZjIj1W2dvXC8J31G5fjfOGbulW9w4WKpT8fPooi0mLkn9A==}
+
+  '@webext-core/messaging@4.0.0':
+    resolution: {integrity: sha512-1GWLsiWeIRJ/LpSlI87jU3e4KCDhyTadQEwyhMlLSwXOt5/ui2xkVcE96/clxjxqp/FcUBA00c5iT5I3crjlTQ==}
+    peerDependencies:
+      '@types/chrome': '*'
+    peerDependenciesMeta:
+      '@types/chrome':
+        optional: true
 
   '@wxt-dev/module-svelte@1.0.1':
     resolution: {integrity: sha512-5siBHr82ycWXFxoxhtqu9LdOAU0y4dimdsaoCXcVgfZP8uRY4iC+QUOJIZz/IAcBof3qMHmCxtDYM6wV1Wne0Q==}
@@ -2169,6 +2186,9 @@ packages:
   zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
 
+  zod@4.5.4:
+    resolution: {integrity: sha512-sC95tT5iHHH9gtpj6A81kh+NEaRAUFN+qlUPDUbRfOMvNf5QCBqsb3WgvnpVtK5Y+4UfA6KqufotuTvMGiTlsA==}
+
 snapshots:
 
   '@aklinker1/rollup-plugin-visualizer@5.12.0(rollup@4.24.2)':
@@ -2179,6 +2199,8 @@ snapshots:
       yargs: 17.7.2
     optionalDependencies:
       rollup: 4.24.2
+
+  '@aklinker1/zero-serialize-error@1.0.2': {}
 
   '@ampproject/remapping@2.3.0':
     dependencies:
@@ -2498,6 +2520,12 @@ snapshots:
       is-potential-custom-element-name: 1.0.1
 
   '@webext-core/match-patterns@1.0.3': {}
+
+  '@webext-core/messaging@4.0.0(@types/chrome@0.0.269)':
+    dependencies:
+      '@aklinker1/zero-serialize-error': 1.0.2
+    optionalDependencies:
+      '@types/chrome': 0.0.269
 
   '@wxt-dev/module-svelte@1.0.1(svelte@5.1.4)(vite@5.4.10(@types/node@22.8.1))(wxt@0.19.13(@types/node@22.8.1)(rollup@4.24.2))':
     dependencies:
@@ -4329,3 +4357,5 @@ snapshots:
       jszip: 3.10.1
 
   zod@3.23.8: {}
+
+  zod@4.5.4: {}
