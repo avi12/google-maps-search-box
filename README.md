@@ -50,4 +50,9 @@ own `moz-extension://` UUID, so there is no fixed origin to allow-list there
 pnpm install
 pnpm dev           # Chrome
 pnpm dev:firefox   # Firefox
+pnpm check         # svelte-check
+pnpm lint          # oxlint --fix -> eslint --fix -> oxlint (the gate)
 ```
+
+Correctness and logic rules live in `.oxlintrc.json`; ESLint carries only what oxlint cannot -
+formatting, Svelte template rules and the local rules in `eslint-rules/`
