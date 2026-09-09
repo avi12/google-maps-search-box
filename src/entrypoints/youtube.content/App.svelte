@@ -74,7 +74,7 @@
 </script>
 
 <div class="search">
-  <input use:keepKeysToSelf
+  <input {@attach keepKeysToSelf}
          bind:value={query}
          oninput={searchPlaces}
          placeholder="Enter your address"
