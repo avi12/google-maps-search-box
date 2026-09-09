@@ -4,6 +4,11 @@ Powered by [@googlemaps/extended-component-library](https://github.com/googlemap
 
 Note that so long as Firefox does not support sandboxes, this extension can only work on Chromium browsers
 
+> **Firefox support lives on the [`google-maps-search-by-api`](https://github.com/avi12/google-maps-search-box/tree/google-maps-search-by-api) branch.**
+> It drops the Maps JS SDK - and with it the sandboxed page - and calls
+> [Places API (New)](https://developers.google.com/maps/documentation/places/web-service/op-overview)
+> over REST from the background script instead, so it builds as MV3 for both Chromium and Firefox
+
 Preparation:
 
 1. Create a Google Cloud Platform project
