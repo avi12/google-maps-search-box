@@ -1,6 +1,6 @@
-import {z} from "zod";
+import { z } from "zod";
 
-async function fetchOk({input, init}: {
+async function fetchOk({ input, init }: {
   input: RequestInfo | URL;
   init?: RequestInit;
 }) {
@@ -17,12 +17,15 @@ async function fetchOk({input, init}: {
 // malformed response can never masquerade as the expected shape, and callers get a
 // typed object to destructure instead of threading a null through every field access.
 // Pass a schema whose fields are all optional so the empty-parse fallback holds.
-export async function fetchJson<TSchema extends z.ZodType>({input, init, schema}: {
+export async function fetchJson<TSchema extends z.ZodType>({ input, init, schema }: {
   input: RequestInfo | URL;
   init?: RequestInit;
   schema: TSchema;
 }) {
-  const response = await fetchOk({input, init});
+  const response = await fetchOk({
+    input,
+    init
+  });
   const body = response ? await response.json().catch(() => null) : null;
   const parsed = schema.safeParse(body);
   return parsed.success ? parsed.data : schema.parse({});

@@ -1,6 +1,6 @@
-import {fetchJson} from "@/lib/fetch.utils";
-import type {PlaceLocation, PlacePrediction} from "@/lib/types";
-import {z} from "zod";
+import { fetchJson } from "@/lib/fetch.utils";
+import type { PlaceLocation, PlacePrediction } from "@/lib/types";
+import { z } from "zod";
 
 // The key ships inside the bundle, so it is public by nature - the real protection is
 // project-side: Places API (New) honours HTTP-referrer-restricted keys, so restrict the
@@ -34,10 +34,10 @@ const placesAutocompleteResponseSchema = z.object({
     z.object({
       placePrediction: z.object({
         placeId: z.string(),
-        text: z.object({text: z.string()}),
+        text: z.object({ text: z.string() }),
         structuredFormat: z.object({
-          mainText: z.object({text: z.string()}).optional(),
-          secondaryText: z.object({text: z.string()}).optional()
+          mainText: z.object({ text: z.string() }).optional(),
+          secondaryText: z.object({ text: z.string() }).optional()
         }).optional()
       }).optional()
     })
@@ -52,7 +52,7 @@ const placeDetailsResponseSchema = z.object({
   formattedAddress: z.string().optional()
 });
 
-export async function getPlacePredictions({input, language, sessionToken}: {
+export async function getPlacePredictions({ input, language, sessionToken }: {
   input: string;
   language: string;
   sessionToken: string;
@@ -62,7 +62,7 @@ export async function getPlacePredictions({input, language, sessionToken}: {
     return predictions;
   }
 
-  const {suggestions = []} = await fetchJson({
+  const { suggestions = [] } = await fetchJson({
     input: "https://places.googleapis.com/v1/places:autocomplete",
     init: {
       method: "POST",
@@ -79,7 +79,7 @@ export async function getPlacePredictions({input, language, sessionToken}: {
     schema: placesAutocompleteResponseSchema
   });
 
-  for (const {placePrediction} of suggestions) {
+  for (const { placePrediction } of suggestions) {
     if (!placePrediction) {
       continue;
     }
@@ -98,7 +98,7 @@ export async function getPlacePredictions({input, language, sessionToken}: {
 // The place picker resolved a picked prediction with Place.fetchFields under the same
 // session token it used while typing, so a whole search bills as one Places session
 // instead of per keystroke. Reproduced here with Place Details (New).
-export async function getPlaceDetails({placeId, language, sessionToken}: {
+export async function getPlaceDetails({ placeId, language, sessionToken }: {
   placeId: string;
   language: string;
   sessionToken: string;
@@ -108,7 +108,7 @@ export async function getPlaceDetails({placeId, language, sessionToken}: {
     sessionToken
   });
 
-  const {location, formattedAddress} = await fetchJson({
+  const { location, formattedAddress } = await fetchJson({
     input: `https://places.googleapis.com/v1/places/${placeId}?${params}`,
     init: {
       headers: {

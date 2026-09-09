@@ -1,8 +1,8 @@
 <script lang="ts">
-  import {keepKeysToSelf} from "@/lib/dom.utils";
-  import {MessageType, sendMessage} from "@/lib/messaging";
-  import type {PlacePrediction} from "@/lib/types";
-  import {onDestroy} from "svelte";
+  import { keepKeysToSelf } from "@/lib/dom.utils";
+  import { MessageType, sendMessage } from "@/lib/messaging";
+  import type { PlacePrediction } from "@/lib/types";
+  import { onDestroy } from "svelte";
 
   const AUTOCOMPLETE_DEBOUNCE = 300;
 
@@ -30,12 +30,15 @@
     error = "";
     const input = query.trim();
     latestInput = input;
+
     if (!input) {
       predictions = [];
       return;
     }
 
-    debounceTimer = setTimeout(() => void runAutocomplete(input), AUTOCOMPLETE_DEBOUNCE);
+    debounceTimer = setTimeout(() => {
+      void runAutocomplete(input);
+    }, AUTOCOMPLETE_DEBOUNCE);
   }
 
   async function runAutocomplete(input: string) {
@@ -74,11 +77,12 @@
 </script>
 
 <div class="search">
-  <input {@attach keepKeysToSelf}
-         bind:value={query}
-         oninput={searchPlaces}
-         placeholder="Enter your address"
-         type="text"/>
+  <input
+    {@attach keepKeysToSelf}
+    oninput={searchPlaces}
+    placeholder="Enter your address"
+    type="text"
+    bind:value={query}/>
 
   {#if predictions.length > 0}
     <ul class="results">

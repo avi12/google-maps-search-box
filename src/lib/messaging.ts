@@ -1,5 +1,5 @@
-import type {PlaceLocation, PlacePrediction} from "@/lib/types";
-import {defineExtensionMessaging} from "@webext-core/messaging";
+import type { PlaceLocation, PlacePrediction } from "@/lib/types";
+import { defineExtensionMessaging } from "@webext-core/messaging";
 
 export enum MessageType {
   placeAutocomplete = "place-autocomplete",
@@ -19,4 +19,4 @@ interface ProtocolMap {
   }) => PlaceLocation | null;
 }
 
-export const {sendMessage, onMessage} = defineExtensionMessaging<ProtocolMap>();
+export const { sendMessage, onMessage } = defineExtensionMessaging<ProtocolMap>();

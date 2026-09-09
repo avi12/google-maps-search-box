@@ -1,16 +1,19 @@
-import {mount, unmount} from "svelte";
 import App from "./App.svelte";
+import { mount, unmount } from "svelte";
 
 async function getElementByMutationObserver(selector: string): Promise<HTMLElement | null> {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     new MutationObserver((_, observer) => {
-      const el = document.querySelector<HTMLElement>(selector);
-      if (el) {
+      const elFound = document.querySelector<HTMLElement>(selector);
+      if (elFound) {
         observer.disconnect();
-        resolve(el);
+        resolve(elFound);
       }
-    }).observe(document, {childList: true, subtree: true});
-  })
+    }).observe(document, {
+      childList: true,
+      subtree: true
+    });
+  });
 }
 
 export default defineContentScript({
@@ -18,7 +21,7 @@ export default defineContentScript({
   cssInjectionMode: "ui",
   async main(ctx) {
     const elementNameToInject = "google-maps-search-box";
-    const selConatiner = "ytd-guide-section-renderer"
+    const selConatiner = "ytd-guide-section-renderer";
     const elGoogleMaps = document.querySelector(elementNameToInject);
     const elContainer = await getElementByMutationObserver(selConatiner);
     if (elGoogleMaps || !elContainer) {
@@ -30,10 +33,10 @@ export default defineContentScript({
       position: "inline",
       append: "first",
       anchor: elContainer,
-      onMount: container => mount(App, {target: container}),
+      onMount: container => mount(App, { target: container }),
       onRemove: app => unmount(app!)
     });
 
     ui.mount();
   }
-})
+});
