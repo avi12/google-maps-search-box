@@ -21,7 +21,7 @@ export default defineConfig({
           }
         ]
       }
-      if (mode === "development") {
+      if (mode === "development" && manifest.content_security_policy) {
         manifest.content_security_policy.sandbox += " http://localhost:3000";
       }
     }

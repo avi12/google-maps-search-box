@@ -17,7 +17,7 @@
   {/if}
 </div>
 <!--suppress HtmlUnknownTag -->
-<gmpx-place-picker ongmpx-placechange={e => {
+<gmpx-place-picker ongmpx-placechange={(e: Event & { target: { value?: { formattedAddress?: string } } }) => {
                      const target = e.target;
                      if (!target.value) {
                        return;
@@ -31,7 +31,7 @@
                        "*"
                      );
                    }}
-                   ongmpx-requesterror={e => {
+                   ongmpx-requesterror={(e: Event) => {
                      console.error(e);
                    }}
 
